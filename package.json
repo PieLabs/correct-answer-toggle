@@ -1,0 +1,16 @@
+{
+  "name": "corespring-show-correct-answer-toggle-react",
+  "version": "0.0.1",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "mkdir -p dist && node ./node_modules/babel-cli/bin/babel.js --presets react src/corespring-show-correct-answer-toggle.jsx --out-file dist/main.js",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-es2015": "^6.14.0",
+    "react": "~15.0.1"
+  }
+}
