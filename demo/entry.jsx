@@ -8,22 +8,18 @@ class Wrapper extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      show: true,
-      toggle: true
+      toggled: false
     }
   }
 
-  onClick() {
-    console.log('onClick!');
-    this.setState({toggle: !this.state.toggle});
+  onToggle(toggled) {
   }
 
   render() {
     return <MuiThemeProvider>
       <Toggle 
-      show={this.state.show} 
-      toggle={this.state.toggle} 
-      onClick={this.onClick.bind(this)} />
+      initialValue={this.state.toggled} 
+      onToggle={this.onToggle.bind(this)}/> 
     </MuiThemeProvider>;
   }
 }

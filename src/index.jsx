@@ -23,8 +23,19 @@ const noSelect = () => {
  */
 class CorespringShowCorrectAnswerToggle extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      toggled: props.initialValue
+    }
+  }
+  
   onClick() {
-    this.props.onClick();
+    this.setState((prevState) => {
+      return { toggled: !prevState.toggled};
+    }, () => {
+      this.props.onToggle(this.state.toggled);
+    });
   }
 
   render() {
@@ -33,7 +44,7 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
     let {sheet: {classes}} = this.props;
 
     function chooseIcon() {
-      if (self.props.toggle) {
+      if (self.state.toggled) {
         return (
           <svg className={classes.svg} key="hideIcon" preserveAspectRatio="xMinYMin meet" viewBox="-283 359 34 35">
             <circle className={classes.hideIconBg} cx="-266" cy="375.9" r="14" />
@@ -52,43 +63,25 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
         );
       }
     }
-
     
     return (
-      <div>{
-        (function () {
-          if (self.props.show) {
-            return (
-              <div className={'svg-holder ' + classes.root} onClick={self.onClick.bind(self)}>
-                <ReactCSSTransitionGroup
-                  component="div" className="svg-holder"
-                  transitionName="answer-toggle-icon"
-                  transitionEnterTimeout={300}
-                  transitionLeaveTimeout={300}>
-                  {chooseIcon()}
-                </ReactCSSTransitionGroup>
-                <div className={classes.label}>{
-                  (function () {
-                    if (self.props.toggle) {
-                      return self.props.hideMessage;
-                    } else {
-                      return self.props.showMessage;
-                    }
-                  })()
-                }</div>
-              </div>
-            );
-          }
-        }.bind(this)())
-      }</div>
+      <div className={'svg-holder ' + classes.root} onClick={self.onClick.bind(self)}>
+        <ReactCSSTransitionGroup
+          component="div" className="svg-holder"
+          transitionName="answer-toggle-icon"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+          {chooseIcon()}
+        </ReactCSSTransitionGroup>
+        <div className={classes.label}>{ self.state.toggled ? self.props.hideMessage : self.props.showMessage } </div>
+      </div>
     );
   }
 }
 
 CorespringShowCorrectAnswerToggle.propTypes = {
-  onClick: React.PropTypes.func,
-  show: React.PropTypes.bool,
-  toggle: React.PropTypes.bool,
+  onToggle: React.PropTypes.func,
+  initialValue: React.PropTypes.bool,
   hideMessage: React.PropTypes.string,
   showMessage: React.PropTypes.string
 };
