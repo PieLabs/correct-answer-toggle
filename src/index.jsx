@@ -61,7 +61,7 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
             return (
               <div className={'svg-holder ' + classes.root} onClick={self.onClick.bind(self)}>
                 <ReactCSSTransitionGroup
-                  component="div" class="svg-holder"
+                  component="div" className="svg-holder"
                   transitionName="answer-toggle-icon"
                   transitionEnterTimeout={300}
                   transitionLeaveTimeout={300}>
