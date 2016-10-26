@@ -17,10 +17,6 @@ const noSelect = () => {
   }
 }
 
-/**
- * Theme options: 
- * muiTheme.palette.textColor -> sets the label color
- */
 class CorespringShowCorrectAnswerToggle extends React.Component {
 
   constructor(props){
@@ -41,6 +37,7 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
   render() {
     var self = this;
 
+    //extract sheet.classes inject by react-jss
     let {sheet: {classes}} = this.props;
 
     function chooseIcon() {
@@ -93,8 +90,17 @@ CorespringShowCorrectAnswerToggle.defaultProps = {
   hideMessage: 'Hide correct answer'
 };
 
+/**
+ * We wrap toggle with this component which builds the styles the object and passes that in.
+ * Theme options: 
+ * muiTheme.palette.textColor -> sets the label color
+ */
 const CompWithTheme = (props, context) => {
 
+  if(!context.muiTheme){
+    throw new Error('missing `muiTheme` - is this rendered within an MuiThemeProvider?');
+  }
+  
   let theme = context.muiTheme;
 
   let styles = {
