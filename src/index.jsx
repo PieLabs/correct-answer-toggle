@@ -66,14 +66,16 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
     
     return (
       <div className={'svg-holder ' + classes.root} onClick={self.onClick.bind(self)}>
-        <ReactCSSTransitionGroup
-          component="div" className="svg-holder"
-          transitionName="answer-toggle-icon"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
-          {chooseIcon()}
-        </ReactCSSTransitionGroup>
-        <div className={classes.label}>{ self.state.toggled ? self.props.hideMessage : self.props.showMessage } </div>
+        <div className={classes.inner}>
+          <ReactCSSTransitionGroup
+            component="div" className="icon-holder"
+            transitionName="answer-toggle-icon"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}>
+            {chooseIcon()}
+          </ReactCSSTransitionGroup>
+          <div className={classes.label}>{ self.state.toggled ? self.props.hideMessage : self.props.showMessage } </div>
+        </div>
       </div>
     );
   }
@@ -108,13 +110,16 @@ const CompWithTheme = (props, context) => {
       fontWeight: 'normal'
     },
     root: _.extend(noSelect(),{
-      display: 'block',
-      width: '200px',
+      display: 'inline-block',
+      width: '100%',
       height: '25px',
-      position: 'relative',
       cursor: 'pointer',
-      margin: '0 auto 0 auto',
     }),
+    inner: {
+      width: '200px',
+      margin: '0 auto',
+      position: 'relative'
+    },
     svg: {
       width: '25px',
       float: 'left'
