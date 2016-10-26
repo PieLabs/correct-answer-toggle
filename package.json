@@ -1,16 +1,30 @@
 {
   "name": "corespring-show-correct-answer-toggle-react",
   "version": "0.0.1",
-  "main": "dist/main.js",
+  "main": "src/index.jsx",
   "scripts": {
-    "build": "mkdir -p dist && node ./node_modules/babel-cli/bin/babel.js --presets react src/corespring-show-correct-answer-toggle.jsx --out-file dist/main.js",
-    "prepublish": "npm run build"
+    "test": "./node_module/.bin/mocha test/**"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
-    "babel-core": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
-    "react": "~15.0.1"
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.9"
+  },
+  "dependencies": {
+    "less": "^2.7.1",
+    "lodash": "^4.16.4",
+    "material-ui": "^0.16.1",
+    "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-jss": "^4.1.2",
+    "react-tap-event-plugin": "^1.0.0"
   }
 }

@@ -1,0 +1,39 @@
+.answer-toggle-icon-enter {
+  opacity: 0;
+  left: -50px;
+}
+
+.answer-toggle-icon-enter.answer-toggle-icon-enter-active {
+  opacity: 1;
+  left: 0px;
+  transition: left 300ms ease-in, opacity 300ms;
+}
+
+.answer-toggle-icon-leave {
+  opacity: 1;
+  left: 0px;
+}
+
+.answer-toggle-icon-leave.answer-toggle-icon-leave-active {
+  opacity: 0;
+  left: -50px;
+  transition: left 300ms ease-in, opacity 300ms;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
