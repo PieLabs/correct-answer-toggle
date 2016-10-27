@@ -17,7 +17,10 @@ const noSelect = () => {
   }
 }
 
-class CorespringShowCorrectAnswerToggle extends React.Component {
+/**
+ * We export the raw unstyled class for testability. For public use please use the default export.
+ */
+export class _CorespringShowCorrectAnswerToggle extends React.Component {
 
   constructor(props){
     super(props);
@@ -35,13 +38,12 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
   }
 
   render() {
-    var self = this;
 
     //extract sheet.classes inject by react-jss
     let {sheet: {classes}} = this.props;
 
-    function chooseIcon() {
-      if (self.state.toggled) {
+    let chooseIcon = () => {
+      if (this.state.toggled) {
         return (
           <svg className={classes.svg} key="hideIcon" preserveAspectRatio="xMinYMin meet" viewBox="-283 359 34 35">
             <circle className={classes.hideIconBg} cx="-266" cy="375.9" r="14" />
@@ -62,7 +64,7 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
     }
     
     return (
-      <div className={'svg-holder ' + classes.root} onClick={self.onClick.bind(self)}>
+      <div className={'svg-holder ' + classes.root} onClick={this.onClick.bind(this)}>
         <div className={classes.inner}>
           <ReactCSSTransitionGroup
             component="div" className="icon-holder"
@@ -71,21 +73,21 @@ class CorespringShowCorrectAnswerToggle extends React.Component {
             transitionLeaveTimeout={300}>
             {chooseIcon()}
           </ReactCSSTransitionGroup>
-          <div className={classes.label}>{ self.state.toggled ? self.props.hideMessage : self.props.showMessage } </div>
+          <div className={classes.label}>{ this.state.toggled ? this.props.hideMessage : this.props.showMessage }</div>
         </div>
       </div>
     );
   }
 }
 
-CorespringShowCorrectAnswerToggle.propTypes = {
+_CorespringShowCorrectAnswerToggle.propTypes = {
   onToggle: React.PropTypes.func,
   initialValue: React.PropTypes.bool,
   hideMessage: React.PropTypes.string,
   showMessage: React.PropTypes.string
 };
 
-CorespringShowCorrectAnswerToggle.defaultProps = {
+_CorespringShowCorrectAnswerToggle.defaultProps = {
   showMessage: 'Show correct answer',
   hideMessage: 'Hide correct answer'
 };
@@ -147,7 +149,7 @@ const CompWithTheme = (props, context) => {
     } 
   };
 
-  let injected = injectSheet(styles)(CorespringShowCorrectAnswerToggle);
+  let injected = injectSheet(styles)(_CorespringShowCorrectAnswerToggle);
   return React.createElement(injected, props);
 }
 
