@@ -5,53 +5,55 @@ import { expect } from 'chai';
 import proxyquire from 'proxyquire';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-describe('CorespringShowCorrectAnswerToggle', () => {
+describe('CorespringCorrectAnswerToggle', () => {
 
   let onToggle;
   let wrapper;
   let sheet;
-  let CorespringShowCorrectAnswerToggle;
+  let CorespringCorrectAnswerToggle;
 
   let mkWrapper = (initialValue, msgs) => {
     initialValue = initialValue === false ? false : true;
     msgs = msgs || {};
-    return shallow(<CorespringShowCorrectAnswerToggle 
-      initialValue={initialValue} 
-      onToggle={onToggle} 
+    return shallow(<CorespringCorrectAnswerToggle
+      initialValue={initialValue}
+      onToggle={onToggle}
       hideMessage={msgs.hide}
       showMessage={msgs.show}
-      sheet={sheet}/>, {
-      context: { muiTheme: { palette: {}}}
-    });
+      sheet={sheet} />, {
+        context: { muiTheme: { palette: {} } }
+      });
   }
 
   beforeEach(() => {
-    CorespringShowCorrectAnswerToggle = proxyquire('../src/index', {
+    CorespringCorrectAnswerToggle = proxyquire('../src/index', {
       "!style!css!less!./index.less": {
-         '@noCallThru': true
+        '@noCallThru': true
       }
-    })._CorespringShowCorrectAnswerToggle;
+    })._CorespringCorrectAnswerToggle;
 
-    sheet = { classes: {
-      root: 'root',
-      label: 'label'
-    }};
+    sheet = {
+      classes: {
+        root: 'root',
+        label: 'label'
+      }
+    };
     onToggle = sinon.stub();
-    wrapper = mkWrapper(); 
+    wrapper = mkWrapper();
   });
 
   describe('render', () => {
 
     it('has an svg-holder', () => {
       let holder = wrapper.find('.svg-holder');
-      expect(holder).to.have.length(1); 
+      expect(holder).to.have.length(1);
     });
-    
+
     it('has an the root class name', () => {
       let holder = wrapper.find('.svg-holder');
       expect(holder.prop('className')).to.eql('svg-holder root');
     });
-    
+
     it('has the hide message', () => {
       let holder = wrapper.find('.label');
       expect(holder.text()).to.eql('Hide correct answer');
@@ -63,13 +65,13 @@ describe('CorespringShowCorrectAnswerToggle', () => {
     });
 
     it('sets a custom hide message', () => {
-      wrapper = mkWrapper(true, {hide: 'hide!'}); 
+      wrapper = mkWrapper(true, { hide: 'hide!' });
       let holder = wrapper.find('.label');
       expect(holder.text()).to.eql('hide!');
     });
-    
+
     it('sets a custom show message', () => {
-      wrapper = mkWrapper(false, {show: 'show!'}); 
+      wrapper = mkWrapper(false, { show: 'show!' });
       let holder = wrapper.find('.label');
       expect(holder.text()).to.eql('show!');
     });
@@ -81,17 +83,17 @@ describe('CorespringShowCorrectAnswerToggle', () => {
       wrapper.find('.svg-holder').simulate('click');
       expect(wrapper.state('toggled')).to.eql(false);
     });
-    
+
     it('updates the state after 2 clicks', () => {
       wrapper.find('.svg-holder').simulate('click');
       wrapper.find('.svg-holder').simulate('click');
       expect(wrapper.state('toggled')).to.eql(true);
     });
-    
+
     it('calls onToggle', () => {
       wrapper.find('.svg-holder').simulate('click');
       sinon.assert.calledWith(onToggle, false);
     })
-   });
+  });
 
 });

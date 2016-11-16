@@ -8,30 +8,30 @@ require('!style!css!less!./index.less');
 
 const noSelect = () => {
   return {
-      '-webkitTouchCcallout': 'none', 
-    '-webkitUserSelect': 'none' ,  
-    '-khtmlUserSelect': 'none' ,  
-    '-mozUserSelect': 'none',    
-    '-msUserSelect': 'none',    
-    'userSelect': 'none'       
+    '-webkitTouchCcallout': 'none',
+    '-webkitUserSelect': 'none',
+    '-khtmlUserSelect': 'none',
+    '-mozUserSelect': 'none',
+    '-msUserSelect': 'none',
+    'userSelect': 'none'
   }
 }
 
 /**
  * We export the raw unstyled class for testability. For public use please use the default export.
  */
-export class _CorespringShowCorrectAnswerToggle extends React.Component {
+export class _CorespringCorrectAnswerToggle extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       toggled: props.initialValue
     }
   }
-  
+
   onClick() {
     this.setState((prevState) => {
-      return { toggled: !prevState.toggled};
+      return { toggled: !prevState.toggled };
     }, () => {
       this.props.onToggle(this.state.toggled);
     });
@@ -62,7 +62,7 @@ export class _CorespringShowCorrectAnswerToggle extends React.Component {
         );
       }
     }
-    
+
     return (
       <div className={'svg-holder ' + classes.root} onClick={this.onClick.bind(this)}>
         <div className={classes.inner}>
@@ -73,21 +73,21 @@ export class _CorespringShowCorrectAnswerToggle extends React.Component {
             transitionLeaveTimeout={300}>
             {chooseIcon()}
           </ReactCSSTransitionGroup>
-          <div className={classes.label}>{ this.state.toggled ? this.props.hideMessage : this.props.showMessage }</div>
+          <div className={classes.label}>{this.state.toggled ? this.props.hideMessage : this.props.showMessage}</div>
         </div>
       </div>
     );
   }
 }
 
-_CorespringShowCorrectAnswerToggle.propTypes = {
+_CorespringCorrectAnswerToggle.propTypes = {
   onToggle: React.PropTypes.func,
   initialValue: React.PropTypes.bool,
   hideMessage: React.PropTypes.string,
   showMessage: React.PropTypes.string
 };
 
-_CorespringShowCorrectAnswerToggle.defaultProps = {
+_CorespringCorrectAnswerToggle.defaultProps = {
   showMessage: 'Show correct answer',
   hideMessage: 'Hide correct answer'
 };
@@ -99,10 +99,10 @@ _CorespringShowCorrectAnswerToggle.defaultProps = {
  */
 const CompWithTheme = (props, context) => {
 
-  if(!context.muiTheme){
+  if (!context.muiTheme) {
     throw new Error('missing `muiTheme` - is this rendered within an MuiThemeProvider?');
   }
-  
+
   let theme = context.muiTheme;
 
   let styles = {
@@ -117,7 +117,7 @@ const CompWithTheme = (props, context) => {
       fontSize: '15px',
       fontWeight: 'normal'
     },
-    root: _.extend(noSelect(),{
+    root: _.extend(noSelect(), {
       display: 'inline-block',
       width: '100%',
       height: '25px',
@@ -146,10 +146,10 @@ const CompWithTheme = (props, context) => {
     },
     hideIconFg: {
       fill: '#1a9cff'
-    } 
+    }
   };
 
-  let injected = injectSheet(styles)(_CorespringShowCorrectAnswerToggle);
+  let injected = injectSheet(styles)(_CorespringCorrectAnswerToggle);
   return React.createElement(injected, props);
 }
 
