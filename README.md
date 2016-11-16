@@ -32,7 +32,7 @@ cd demo
 ### Usage
 ```javascript
 
-import Toggle from 'show-correct-response-toggle-react'; 
+import Toggle from 'corespring-correct-answer-toggle'; 
 
 function onToggle(toggled){
   console.log('on toggle: ', toggled);
