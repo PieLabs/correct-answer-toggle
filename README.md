@@ -42,3 +42,14 @@ const MyComp = (props) => {
   return <div><Toggle onToggle={onToggle} initialValue={false}/></div>
 }
 ```
+
+## Release 
+
+```shell
+gulp release
+git checkout master
+npm publish
+```
+
+
+
