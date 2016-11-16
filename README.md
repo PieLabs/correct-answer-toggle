@@ -1,6 +1,8 @@
-# corespring-show-correct-answer-toggle-react
+# corespring-correct-answer-toggle
 
 A toggle with an icon and a label.
+
+![Preview](preview.png)
 
 # Usage 
 
