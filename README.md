@@ -1,5 +1,7 @@
 # corespring-correct-answer-toggle
 
+[![Build Status](https://travis-ci.org/PieLabs/corespring-correct-answer-toggle.svg?branch=develop)](https://travis-ci.org/PieLabs/corespring-correct-answer-toggle)
+
 A toggle with an icon and a label.
 
 ![Preview](preview.png)
