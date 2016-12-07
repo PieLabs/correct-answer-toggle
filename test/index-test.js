@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import proxyquire from 'proxyquire';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Expander from '../src/expander';
 
 describe('CorespringCorrectAnswerToggle', () => {
 
@@ -27,10 +28,10 @@ describe('CorespringCorrectAnswerToggle', () => {
 
   beforeEach(() => {
     CorespringCorrectAnswerToggle = proxyquire('../src/index', {
-      "!style!css!less!./index.less": {
+      "./index.less": {
         '@noCallThru': true
       }
-    })._CorespringCorrectAnswerToggle;
+    }).default;
 
     sheet = {
       classes: {
@@ -44,14 +45,8 @@ describe('CorespringCorrectAnswerToggle', () => {
 
   describe('render', () => {
 
-    it('has an svg-holder', () => {
-      let holder = wrapper.find('.svg-holder');
-      expect(holder).to.have.length(1);
-    });
-
     it('has an the root class name', () => {
-      let holder = wrapper.find('.svg-holder');
-      expect(holder.prop('className')).to.eql('svg-holder root');
+      expect(wrapper.prop('className').trim()).to.eql('correct-answer-toggle');
     });
 
     it('has the hide message', () => {
@@ -80,18 +75,18 @@ describe('CorespringCorrectAnswerToggle', () => {
 
   describe('onClick', () => {
     it('updates the state', () => {
-      wrapper.find('.svg-holder').simulate('click');
+      wrapper.find(Expander).childAt(0).simulate('click');
       expect(wrapper.state('toggled')).to.eql(false);
     });
 
     it('updates the state after 2 clicks', () => {
-      wrapper.find('.svg-holder').simulate('click');
-      wrapper.find('.svg-holder').simulate('click');
+      wrapper.find(Expander).childAt(0).simulate('click');
+      wrapper.find(Expander).childAt(0).simulate('click');
       expect(wrapper.state('toggled')).to.eql(true);
     });
 
     it('calls onToggle', () => {
-      wrapper.find('.svg-holder').simulate('click');
+      wrapper.find(Expander).childAt(0).simulate('click');
       sinon.assert.calledWith(onToggle, false);
     })
   });

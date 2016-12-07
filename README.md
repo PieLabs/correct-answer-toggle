@@ -10,6 +10,10 @@ A toggle with an icon and a label.
 
 You need to include this in another library that builds react aka (babel).
 
+## Webpack
+
+We assume that you have a loader that will load in `.less`. In the demo we use `style-loader!css-loader!less-loader`.
+
 ## Install 
 
 ```shell 
@@ -39,7 +43,12 @@ function onToggle(toggled){
 }
 
 const MyComp = (props) => {
-  return <div><Toggle onToggle={onToggle} initialValue={false}/></div>
+  return <div>
+    <Toggle 
+      show={props.show} 
+      onToggle={onToggle} 
+      initialValue={false}/>
+  </div>;
 }
 ```
 
