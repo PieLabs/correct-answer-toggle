@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import _ from 'lodash';
 import Expander from './expander';
 
 require('./index.less');
