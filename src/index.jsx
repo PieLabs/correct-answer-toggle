@@ -13,15 +13,12 @@ export default class CorespringCorrectAnswerToggle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggled: props.initialValue,
       show: props.show
     }
   }
 
   onClick() {
-    this.setState({ toggled: !this.state.toggled }, () => {
-      this.props.onToggle(this.state.toggled);
-    });
+    this.props.onToggle(!this.props.toggled);
   }
 
 
@@ -34,7 +31,7 @@ export default class CorespringCorrectAnswerToggle extends React.Component {
   render() {
 
     let chooseIcon = () => {
-      if (this.state.toggled) {
+      if (this.props.toggled) {
         return (
           <svg key="hideIcon" preserveAspectRatio="xMinYMin meet" viewBox="-283 359 34 35">
             <circle className="hideIconBg" cx="-266" cy="375.9" r="14" />
@@ -71,7 +68,7 @@ export default class CorespringCorrectAnswerToggle extends React.Component {
                 transitionLeaveTimeout={200}>
                 {chooseIcon()}
               </ReactCSSTransitionGroup>
-              <div className="label">{this.state.toggled ? this.props.hideMessage : this.props.showMessage}</div>
+              <div className="label">{this.props.toggled ? this.props.hideMessage : this.props.showMessage}</div>
             </div>
           </div>
         </Expander>
@@ -82,7 +79,7 @@ export default class CorespringCorrectAnswerToggle extends React.Component {
 
 CorespringCorrectAnswerToggle.propTypes = {
   onToggle: React.PropTypes.func,
-  initialValue: React.PropTypes.bool,
+  toggled: React.PropTypes.bool,
   show: React.PropTypes.bool,
   hideMessage: React.PropTypes.string,
   showMessage: React.PropTypes.string
@@ -91,5 +88,6 @@ CorespringCorrectAnswerToggle.propTypes = {
 CorespringCorrectAnswerToggle.defaultProps = {
   showMessage: 'Show correct answer',
   hideMessage: 'Hide correct answer',
-  show: false
+  show: false,
+  toggled: false
 };
