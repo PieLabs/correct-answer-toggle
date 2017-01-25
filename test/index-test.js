@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
+import { assert, stub } from 'sinon';
 import { expect } from 'chai';
 import proxyquire from 'proxyquire';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,11 +13,11 @@ describe('CorespringCorrectAnswerToggle', () => {
   let sheet;
   let CorespringCorrectAnswerToggle;
 
-  let mkWrapper = (initialValue, msgs) => {
-    initialValue = initialValue === false ? false : true;
+  let mkWrapper = (toggled, msgs) => {
+    toggled = toggled === false ? false : true;
     msgs = msgs || {};
     return shallow(<CorespringCorrectAnswerToggle
-      initialValue={initialValue}
+      toggled={toggled}
       onToggle={onToggle}
       hideMessage={msgs.hide}
       showMessage={msgs.show}
@@ -39,7 +39,7 @@ describe('CorespringCorrectAnswerToggle', () => {
         label: 'label'
       }
     };
-    onToggle = sinon.stub();
+    onToggle = stub();
     wrapper = mkWrapper();
   });
 
@@ -54,7 +54,7 @@ describe('CorespringCorrectAnswerToggle', () => {
       expect(holder.text()).to.eql('Hide correct answer');
     });
 
-    it('has the show is initialValue is true', () => {
+    it('has show message when toggled is false', () => {
       let holder = mkWrapper(false).find('.label');
       expect(holder.text()).to.eql('Show correct answer');
     });
@@ -74,21 +74,20 @@ describe('CorespringCorrectAnswerToggle', () => {
   });
 
   describe('onClick', () => {
-    it('updates the state', () => {
-      wrapper.find(Expander).childAt(0).simulate('click');
-      expect(wrapper.state('toggled')).to.eql(false);
-    });
-
-    it('updates the state after 2 clicks', () => {
-      wrapper.find(Expander).childAt(0).simulate('click');
-      wrapper.find(Expander).childAt(0).simulate('click');
-      expect(wrapper.state('toggled')).to.eql(true);
-    });
-
     it('calls onToggle', () => {
       wrapper.find(Expander).childAt(0).simulate('click');
-      sinon.assert.calledWith(onToggle, false);
-    })
+      assert.calledWith(onToggle, false);
+    });
+
+    it('calls onToggle with update state', () => {
+      wrapper.find(Expander).childAt(0).simulate('click');
+      assert.calledWith(onToggle, false);
+      //simulate updating the toggled prop 
+      wrapper.setProps({ toggled: false });
+      wrapper.find(Expander).childAt(0).simulate('click');
+      assert.calledWith(onToggle, true);
+    });
+
   });
 
 });
