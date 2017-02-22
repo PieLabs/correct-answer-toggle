@@ -25,21 +25,23 @@
     "css-loader": "^0.26.1",
     "enzyme": "^2.7.0",
     "gulp": "^3.9.1",
+    "ignore-styles": "^5.0.1",
     "less-loader": "^2.2.3",
     "mocha": "^3.2.0",
     "proxyquire": "^1.7.10",
     "react-addons-test-utils": "^15.4.1",
+    "react-tap-event-plugin": "^2.0.1",
     "release-helper": "github:pielabs/release-helper#v1.3.0",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.9",
-    "react-tap-event-plugin": "^2.0.1"
+    "webpack-dev-server": "^2.1.0-beta.9"
   },
   "dependencies": {
     "less": "^2.7.1",
     "lodash": "^4.17.2",
     "material-ui": "^0.16.5",
+    "corespring-icon": "PieElements/corespring-icon#master",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.1"
