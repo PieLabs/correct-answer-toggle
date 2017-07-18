@@ -8,7 +8,7 @@ require('./index.less');
 /**
  * We export the raw unstyled class for testability. For public use please use the default export.
  */
-export default class CorespringCorrectAnswerToggle extends React.Component {
+export default class CorrectAnswerToggle extends React.Component {
 
   constructor(props) {
     super(props);
@@ -63,7 +63,7 @@ export default class CorespringCorrectAnswerToggle extends React.Component {
   }
 }
 
-CorespringCorrectAnswerToggle.propTypes = {
+CorrectAnswerToggle.propTypes = {
   onToggle: React.PropTypes.func,
   toggled: React.PropTypes.bool,
   show: React.PropTypes.bool,
@@ -71,7 +71,7 @@ CorespringCorrectAnswerToggle.propTypes = {
   showMessage: React.PropTypes.string
 };
 
-CorespringCorrectAnswerToggle.defaultProps = {
+CorrectAnswerToggle.defaultProps = {
   showMessage: 'Show correct answer',
   hideMessage: 'Hide correct answer',
   show: false,
