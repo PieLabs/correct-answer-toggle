@@ -1,8 +1,7 @@
+import CorrectResponseIcon from 'corespring-icon/correct-response-icon';
+import Expander from './expander';
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import Expander from './expander';
-import CorrectResponseIcon from 'corespring-icon/correct-response-icon';
 
 require('./index.less');
 
@@ -33,9 +32,9 @@ export default class CorespringCorrectAnswerToggle extends React.Component {
 
     let chooseIcon = () => {
       if (this.props.toggled) {
-        return <CorrectResponseIcon open={true} key="correct-open"/>
+        return <CorrectResponseIcon open={true} key="correct-open" />
       } else {
-        return <CorrectResponseIcon open={false} key="correct-closed"/>
+        return <CorrectResponseIcon open={false} key="correct-closed" />
       }
     }
 

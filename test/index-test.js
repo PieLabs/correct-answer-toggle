@@ -1,10 +1,10 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { assert, stub } from 'sinon';
+import { mount, shallow } from 'enzyme';
+
+import Expander from '../src/expander';
+import React from 'react';
 import { expect } from 'chai';
 import proxyquire from 'proxyquire';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Expander from '../src/expander';
 
 describe('CorespringCorrectAnswerToggle', () => {
 
